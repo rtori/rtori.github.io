@@ -10,7 +10,16 @@
     <script src="Build/UnityLoader.js"></script>
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/BuildWeb.json", {onProgress: UnityProgress});
+	 
     </script>
+	 <script>
+            var ws = new WebSocket("ws://127.0.0.1:5678/"),
+                messages = document.createElement('ul');
+            ws.onmessage = function (event) {
+                document.getElementById("demo").innerHTML = event.data;
+            };
+            
+        </script>
   </head>
   <body>
     <div class="webgl-content">
@@ -19,6 +28,7 @@
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
         <div class="title">Clique aqui para aumentar a janela -></div>
+		<p id="demo"></p>
       </div>
     </div>
   </body>
