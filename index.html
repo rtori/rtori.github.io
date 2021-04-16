@@ -19,7 +19,7 @@
 	var jsonWebSocket;
 	var ws = new WebSocket("ws://127.0.0.1:5678/"),messages = document.createElement('ul');
 	ws.onmessage = function (event) {
-		document.getElementById("demo").innerHTML = event.data;
+		//document.getElementById("demo").innerHTML = event.data;
 		sendWebsocketData(event.data);
 	};	
             
@@ -31,8 +31,7 @@
       <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-        <div class="title">Clique aqui para aumentar a janela -></div>
-		<p id="demo"></p>
+        <div class="title">AUMENTAR a janela ></div>		
       </div>
     </div>
   </body>
