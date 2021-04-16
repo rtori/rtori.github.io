@@ -9,17 +9,21 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="Build/UnityLoader.js"></script>
     <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/BuildWeb.json", {onProgress: UnityProgress});
-	 
-    </script>
-	 <script>
-            var ws = new WebSocket("ws://127.0.0.1:5678/"),
-                messages = document.createElement('ul');
-            ws.onmessage = function (event) {
-                document.getElementById("demo").innerHTML = event.data;
-            };
+    var unityInstance = UnityLoader.instantiate("unityContainer", "Build/BuildWeb.json", {onProgress: UnityProgress});
+	var begin = false;
+	function sendWebsocketData(data) {
+		if(begin)
+			unityInstance.SendMessage('PivoCabeca', 'getWebSocketJson', data);
+
+	}			
+	var jsonWebSocket;
+	var ws = new WebSocket("ws://127.0.0.1:5678/"),messages = document.createElement('ul');
+	ws.onmessage = function (event) {
+		document.getElementById("demo").innerHTML = event.data;
+		sendWebsocketData(event.data);
+	};	
             
-        </script>
+    </script>
   </head>
   <body>
     <div class="webgl-content">
