@@ -19,19 +19,24 @@
 	var jsonWebSocket;
 	var ws = new WebSocket("ws://127.0.0.1:5678/"),messages = document.createElement('ul');
 	ws.onmessage = function (event) {
-		//document.getElementById("demo").innerHTML = event.data;
+		date = new Date(Date.now())
+		document.getElementById("demo1").innerHTML = date.toISOString(); 
+		document.getElementById("demo").innerHTML = '__________Data= '+event.data;
 		sendWebsocketData(event.data);
+		
 	};	
             
     </script>
   </head>
   <body>
     <div class="webgl-content">
-      <div id="unityContainer" style="width: 960px; height: 600px"></div>
+      <div id="unityContainer" style="width: 1240px; height: 800px"></div>
       <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-        <div class="title">AUMENTAR a janela ></div>		
+        <div class="title">AUMENTAR a janela ></div>
+<div id="demo1"></div>	
+<div id="demo"></div>		
       </div>
     </div>
   </body>
