@@ -25,16 +25,38 @@
 		sendWebsocketData(event.data);
 		
 	};	
+	function copiedText(e){
+		  var keynum;
+
+		  if(window.event) { // IE                  
+			keynum = v.keyCode;
+		  } else if(v.which){ // Netscape/Firefox/Opera                 
+			keynum = v.which;
+		  }
+
+		 
+	}
+	var clipText="";	
+	document.addEventListener('keydown', evt => {
+    if (evt.key === 'v' && evt.ctrlKey) {
+        clipboardData = navigator.clipboard.readText().then(
+			clipText => unityInstance.SendMessage('Manager', 'getCopiedTextFromFrontEnd', clipText));
+    }
+});
+	
+
+	
             
     </script>
   </head>
   <body>
-    <div class="webgl-content">
+    <div class="webgl-content" onkeypress="copiedText(event)">
       <div id="unityContainer" style="width: 1240px; height: 800px"></div>
       <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
         <div class="title">AUMENTAR a janela ></div>
+		
 <div id="demo1"></div>	
 <div id="demo"></div>		
       </div>
